@@ -163,3 +163,91 @@ new_hash.keys #=> [:defcon, :action]
 
 
 
+# Control structures
+## IF-ELSE
+if true
+  "if statement"
+elsif false
+  "else if, optional"
+else
+  "else, also optional"
+end
+
+## FOR
+for counter in 1..5
+  puts "iteration #{counter}"
+end
+#=> iteration 1
+#=> iteration 2
+#=> iteration 3
+#=> iteration 4
+#=> iteration 5
+
+# HOWEVER, No-one uses for loops.
+# Instead you should use the "each" method and pass it a block.
+# A block is a bunch of code that you can pass to a method like "each".
+# It is analogous to lambdas, anonymous functions or closures in other programming languages.
+#
+# The "each" method of a range runs the block once for each element of the range.
+# The block is passed a counter as a parameter.
+# Calling the "each" method with a block looks like this:
+
+(1..5).each do |counter|
+  puts "iteration #{counter}"
+end
+#=> iteration 1
+#=> iteration 2
+#=> iteration 3
+#=> iteration 4
+#=> iteration 5
+
+# You can also surround blocks in curly brackets:
+(1..5).each {|counter| puts "iteration #{counter}"}
+
+# The contents of data structures can also be iterated using each.
+array.each do |element|
+  puts "#{element} is part of the array"
+end
+hash.each do |key, value|
+  puts "#{key} is #{value}"
+end
+
+## WHILE
+counter = 1
+while counter <= 5 do
+  puts "iteration #{counter}"
+  counter += 1
+end
+
+## SWITCH-CASE
+grade = 'x'
+case grade
+when 'A'
+  puts "Way to go kiddo"
+when 'B'
+  puts "Better luck next time"
+when 'C'
+  puts "You can do better"
+when 'D'
+  puts "Scraping through"
+when 'F'
+  puts "You failed!"
+else # default
+  puts "Alternative grading system, eh?"
+end
+#=> "Alternative grading system, eh?"
+
+# cases can also use ranges
+grade = 82
+case grade
+when 90..100
+  puts "Hooray!"
+when 80...90
+  puts "OK job"
+else
+  puts "You failed!"
+end
+#=> "OK job"
+
+
+
