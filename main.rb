@@ -251,3 +251,49 @@ end
 
 
 
+# Functions
+def double(x)
+  x * 2
+end
+# Functions (and all blocks) implicitly return the value of the last statement
+double(2) #=> 4
+
+# Parentheses are optional where the result is unambiguous
+double 3 #=> 6
+double double 3 #=> 12
+
+def sum(x,y)
+  x + y
+end
+# Method arguments are separated by a comma
+sum 3, 4 #=> 7
+sum sum(3,4), 5 #=> 12
+
+# yield
+# All methods have an implicit, optional block parameter
+# it can be called with the 'yield' keyword
+def surround
+  puts "{"
+  yield
+  puts "}"
+end
+surround { puts 'hello world' }
+# {
+# hello world
+# }
+
+# You can pass a block to a function "&" marks a reference to a passed block
+def guests(&block)
+  block.call "some_argument"
+end
+
+# You can pass a list of arguments, which will be converted into an array
+# That's what splat operator ("*") is for
+def guests(*array)
+  array.each { |guest| puts "#{guest}" }
+end
+guests array
+#=> [1, 2, 3, 4, 5, 6]
+
+
+
