@@ -424,3 +424,55 @@ Doctor.bar # nil
 
 
 
+# Module
+module ModuleExample
+  def foo
+    'foo'
+  end
+end
+
+# Including modules binds the methods to the object instance
+# Extending modules binds the methods to the class instance
+class Person
+  include ModuleExample
+end
+class Book
+  extend ModuleExample
+end
+
+#Person.foo     # => NoMethodError: undefined method `foo' for Person:Class
+Person.new.foo # => 'foo'
+Book.foo       # => 'foo'
+#Book.new.foo   # => NoMethodError: undefined method `foo'
+
+
+
+# Callbacks when including and extending a module are executed
+module ConcernExample
+  def self.included(base)
+    base.extend(ClassMethods)
+    base.send(:include, InstanceMethods)
+  end
+
+  module ClassMethods
+    def bar
+      'bar'
+    end
+  end
+
+  module InstanceMethods
+    def qux
+      'qux'
+    end
+  end
+end
+
+class Something
+  include ConcernExample # object level
+end
+
+Something.bar     # => 'bar'
+#Something.qux     # => NoMethodError: undefined method `qux'
+#Something.new.bar # => NoMethodError: undefined method `bar'
+Something.new.qux # => 'qux'
+
