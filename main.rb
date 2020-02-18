@@ -356,3 +356,71 @@ Human.say("Hi") #=> "Hi"
 
 
 
+# Variable's scopes are defined by the way we name them.
+# Variables that start with $ have global scope
+$var_global = "I'm a global var"
+puts defined? $var_global #=> "global-variable"
+
+# Variables that start with @@ have class scope
+# @@var_class = "I'm a class var"
+# puts defined? @@var_class #=> "class variable"
+
+# Variables that start with @ have instance scope
+@var_instance = "I'm an instance var"
+puts defined? @var_instance #=> "instance-variable"
+
+# Variables that start with a capital letter are constants
+Var_constant = "I'm a constant var"
+puts defined? Var_constant #=> "constant"
+
+# Variable local
+var_local = "I'm a local var"
+puts defined? var_local #=> "local-variable"
+
+
+
+# Class also is object in ruby. So a class can have instance variables.
+# These class variable are shared among the class and all of its descendants.
+
+# base class
+class Human
+  @@foo = 0
+
+  def self.foo
+    @@foo
+  end
+
+  def self.foo=(value)
+    @@foo = value
+  end
+end
+
+# derived class
+class Worker < Human
+end
+
+Human.foo # 0
+Worker.foo # 0
+Human.foo = 2 # 2
+Worker.foo # 2
+
+
+# Class instance variables are not shared by the class's descendants.
+class Human
+  @bar = 0
+
+  def self.bar
+    @bar
+  end
+
+  def self.bar=(value)
+    @bar = value
+  end
+end
+class Doctor < Human
+end
+Human.bar # 0
+Doctor.bar # nil
+
+
+
