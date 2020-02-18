@@ -91,3 +91,19 @@ y = 20
 x #=> 10
 y #=> 20
 
+# By convention, use snake_case for variable names
+snake_case = true
+
+# Use descriptive variable names
+path_to_project_root = '/good/name/'
+path = '/bad/name/'
+
+# Symbols (are objects)
+# Symbols are immutable, reusable constants represented internally by an integer value.
+# They're often used instead of strings to efficiently convey specific, meaningful values.
+:pending.class #=> Symbol are immutable, reusable constants
+status = :pending
+status == :pending #=> true
+status == 'pending' #=> false
+status == :approved #=> false
+
