@@ -66,3 +66,28 @@ false.class #=> FalseClass
 2 <= 2 #=> true
 2 >= 2 #=> true
 
+# Strings are objects
+'I am a string'.class #=> String
+"I am a string too".class #=> String
+
+placeholder = "use string interpolation"
+"I can #{placeholder} when using double quoted strings"
+#=> "I can use string interpolation when using double quoted strings"
+
+# Combine strings, but not with numbers
+"hello " + "world"  #=> "hello world"
+# "hello " + 3 #=> TypeError: can't convert Fixnum into String
+"hello " + 3.to_s #=> "hello 3"
+
+# Variables
+x = 25 #=> 25
+
+# Note that assignment returns the value assigned
+# This means you can do multiple assignment:
+x = y = 10
+x #=> 10
+y #=> 10
+y = 20
+x #=> 10
+y #=> 20
+
